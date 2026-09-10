@@ -48,7 +48,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "",
 
 	// 站点 URL
-	site_url: "https://www.abc.com",
+	site_url: "https://blog-zeta-seven-36.vercel.app/",
 
 	// 站点描述
 	description:
