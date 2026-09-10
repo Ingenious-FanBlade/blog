@@ -48,7 +48,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "",
 
 	// 站点 URL
-	site_url: "",
+	site_url: "https://www.abc.com",
 
 	// 站点描述
 	description:
