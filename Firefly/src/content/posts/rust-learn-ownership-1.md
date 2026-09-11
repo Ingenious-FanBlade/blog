@@ -3,6 +3,7 @@ title: Rust学习——所有权、引用和借用
 published: 2026-09-10
 description: 总结整理Rust所有权、引用和借用的一些知识
 tags: [Rust]
+image: ./images/cat1.avif
 category: Rust学习
 series: "Rust学习之路"
 seriesOrder: 2
