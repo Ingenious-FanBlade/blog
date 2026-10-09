@@ -2,7 +2,8 @@
 title: Rust学习——简单链表的实现
 published: 2026-09-11
 description: 实现一个简单的单向链表
-tag: [Rust]
+tags: [Rust]
+image: ../images/cat2.avif
 category: Rust学习
 series: "Rust学习之路"
 seriesOrder: 3
