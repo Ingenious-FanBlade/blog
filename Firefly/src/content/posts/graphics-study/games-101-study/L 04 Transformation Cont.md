@@ -1,5 +1,5 @@
 ---
-title: 04 Transformation Cont 视图变换
+title: Transformation Cont 视图变换
 published: 2026-10-13
 description: 介绍齐次坐标下的变换矩阵、模型视图变换和投影变换
 tags: [graphics,games101]

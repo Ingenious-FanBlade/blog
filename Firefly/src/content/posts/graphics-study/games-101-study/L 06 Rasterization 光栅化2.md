@@ -1,5 +1,5 @@
 ---
-title: 06 Rasterization 光栅化2
+title: Rasterization 光栅化2
 published: 2026-10-13
 description: 介绍光栅化的操作
 tags: [graphics,games101]

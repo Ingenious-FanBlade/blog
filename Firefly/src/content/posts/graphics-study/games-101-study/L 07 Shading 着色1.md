@@ -1,5 +1,5 @@
 ---
-title: 06 Shading 着色1
+title: Shading 着色1
 published: 2026-10-13
 description: 介绍光栅化的操作
 tags: [graphics,games101]

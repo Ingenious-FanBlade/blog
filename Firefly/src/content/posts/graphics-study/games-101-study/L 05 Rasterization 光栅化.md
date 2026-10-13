@@ -1,5 +1,5 @@
 ---
-title: 05 Rasterization 光栅化1
+title: Rasterization 光栅化1
 published: 2026-10-13
 description: 介绍光栅化的操作
 tags: [graphics,games101]
@@ -55,4 +55,25 @@ for(int x=0;x<xmax;++x)
 - 采样会带来锯齿问题（走样）
 > 需要抗锯齿
 
-## Z-Buffering
+## Z-Buffer 深度缓冲
+
+- 用来描述像素的前后关系
+- 每个像素存储对应的深度值
+  > - frame buffer帧缓冲存储像素的颜色
+  > - depth buffer深度缓冲存储像素的深度值
+
+### Z-Buffer 要求
+
+1. $z\in[0,1]$
+2. z更小更近，更大更远
+
+```
+    // 深度缓存初始化为∞
+    for(each triangle T)
+        for(each sample(x,y,z) in T)
+            if(z < z_buffer[x,y])
+                z_buffer[x,y] = z;
+                frame_buffer[x,y] = rgb;
+            else
+                ...
+```
