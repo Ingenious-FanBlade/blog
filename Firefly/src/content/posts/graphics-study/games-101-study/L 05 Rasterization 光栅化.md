@@ -17,9 +17,22 @@ seriesOrder: 3
 - 范围：$[0,0]\quad to\quad [width-1,height-1]$
 - 像素$(x,y)$的中心点为$(x+0.5,y+0.5)$
 
+## 透视除法
+
+将裁剪空间的坐标值全部除以$w$：
+$$
+    \begin{bmatrix}
+        x\\y\\z\\w
+    \end{bmatrix}\implies
+    \begin{bmatrix}
+        x/w\\y/w\\z/w\\1    
+    \end{bmatrix}
+$$
+这样才能拿出x，y，z项的三维坐标接着使用
+
 ## 视口变换
 
-- 将空间从 $[-1,1]^2$ 变换为屏幕空间 $[0,width] \times [0,height]$
+将空间从 $[-1,1]^2$ 变换为屏幕空间 $[0,width] \times [0,height]$
 
 $$
 M_{viewport}=\begin{bmatrix}
@@ -55,25 +68,3 @@ for(int x=0;x<xmax;++x)
 - 采样会带来锯齿问题（走样）
 > 需要抗锯齿
 
-## Z-Buffer 深度缓冲
-
-- 用来描述像素的前后关系
-- 每个像素存储对应的深度值
-  > - frame buffer帧缓冲存储像素的颜色
-  > - depth buffer深度缓冲存储像素的深度值
-
-### Z-Buffer 要求
-
-1. $z\in[0,1]$
-2. z更小更近，更大更远
-
-```
-    // 深度缓存初始化为∞
-    for(each triangle T)
-        for(each sample(x,y,z) in T)
-            if(z < z_buffer[x,y])
-                z_buffer[x,y] = z;
-                frame_buffer[x,y] = rgb;
-            else
-                ...
-```

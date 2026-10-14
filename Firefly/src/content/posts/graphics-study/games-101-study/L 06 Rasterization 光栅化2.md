@@ -9,7 +9,7 @@ series: "Games101学习之路"
 seriesOrder: 4
 ---
 
-# Rasterization 2
+# Rasterization 光栅化2
 
 ## Sample 采样
 

@@ -124,7 +124,7 @@ $$
 
 #### 推导
 
-![](../../images/graphics-study/games-101-study/geogebra-export.png)
+![](../../images/graphics-study/games-101-study/camera-frustum-z-coordinates.svg)
 
 $$y'=\frac{n}{z}y\quad x'=\frac{n}{z}x$$
 
@@ -151,7 +151,7 @@ M_{persp→ortho}\begin{bmatrix}
 \end{bmatrix}
 $$
 
-又因为近平面的性质: 
+又因为近平面的性质（近平面上任何一个点变换后坐标都不变）: 
 $$
 M_{persp→ortho}\begin{bmatrix}
     x\\ y\\ n\\ 1
@@ -169,7 +169,7 @@ $$
 \end{bmatrix}=n^2\implies An+B = n^2
 $$
 
-又因为远平面中心点的性质:
+又因为远平面中心点的性质（远平面的中心点的坐标值不变）:
 $$
 M_{persp→ortho}\begin{bmatrix}
     0\\ 0\\ f\\ 1

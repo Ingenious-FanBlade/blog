@@ -302,7 +302,7 @@ export default defineConfig({
 				[remarkPlantuml, plantumlConfig],
 			],
 			rehypePlugins: [
-				[rehypeKatex, { katex }],
+				[rehypeKatex,],
 				[rehypeCallouts, { theme: siteConfig.post.rehypeCallouts.theme }],
 				rehypeSlug,
 				rehypeCodeGroup,
