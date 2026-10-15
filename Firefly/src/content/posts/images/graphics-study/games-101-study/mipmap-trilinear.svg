@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1110" viewBox="0 0 1800 1110" role="img" aria-labelledby="title desc">
+<title id="title">MipMap 三线性插值：非整数 LOD 查询</title>
+<desc id="desc">MipMap 以金字塔方式排列，第 0 层在底部，第 3 层在顶部。原始纹理为 8×8，逐层降采样为 4×4、2×2、1×1。示例查询 LOD 1.4，位于第 1 层与第 2 层之间。红色虚线平面仅标记查询位置。对两层中同一归一化纹理坐标分别进行双线性采样，再将第 1 层采样结果按 60%、第 2 层采样结果按 40% 混合，得到屏幕像素颜色。图中不包含公式。参考：https://wikis.khronos.org/opengl/GLAPI/glTexParameter 。</desc>
+<defs>
+  <style>text { font-family: "Segoe UI", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; } .center { fill: #253649; stroke: white; stroke-width: 2; }</style>
+  <marker id="arrow-blue" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="11" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11 Z" fill="#3D72A6"/></marker>
+  <marker id="arrow-purple" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="11" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11 Z" fill="#8266AE"/></marker>
+  <marker id="arrow-ink" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="11" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11 Z" fill="#253649"/></marker>
+</defs>
+<rect width="1800" height="1110" fill="#FFFFFF"/>
+<text x="72" y="80" font-size="40" fill="#253649" font-weight="650" text-anchor="start" >MipMap 的三线性插值</text>
+<text x="1728" y="77" font-size="14" fill="#68778A" font-weight="400" text-anchor="end" letter-spacing="2">TRILINEAR MIPMAP FILTERING</text>
+<text x="72" y="123" font-size="21" fill="#68778A" font-weight="400" text-anchor="start" >非整数 LOD 1.4：在相邻两层中取样，再沿层级方向平滑混合。</text>
+<path d="M72 155 H1728" fill="none" stroke="#DFE5EC" stroke-width="1.5" />
+<text x="72" y="210" font-size="17" fill="#68778A" font-weight="400" text-anchor="start" >01</text>
+<text x="113" y="210" font-size="24" fill="#253649" font-weight="600" text-anchor="start" >选择相邻层</text>
+<text x="884" y="210" font-size="17" fill="#68778A" font-weight="400" text-anchor="start" >02</text>
+<text x="925" y="210" font-size="24" fill="#253649" font-weight="600" text-anchor="start" >每层双线性采样</text>
+<text x="1340" y="210" font-size="17" fill="#68778A" font-weight="400" text-anchor="start" >03</text>
+<text x="1381" y="210" font-size="24" fill="#253649" font-weight="600" text-anchor="start" >层间线性混合</text>
+<path d="M360 282 L320 435 L240 650 L80 865" fill="none" stroke="#CCD5DF" stroke-width="1.4" stroke-dasharray="5 7"/>
+<path d="M440 282 L480 435 L560 650 L720 865" fill="none" stroke="#CCD5DF" stroke-width="1.4" stroke-dasharray="5 7"/>
+<g id="mip-level-0">
+<polygon points="400.00,737.00 440.00,753.00 400.00,769.00 360.00,753.00" fill="#65A8C8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,753.00 480.00,769.00 440.00,785.00 400.00,769.00" fill="#89B5DC" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,769.00 520.00,785.00 480.00,801.00 440.00,785.00" fill="#6AAEBF" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="520.00,785.00 560.00,801.00 520.00,817.00 480.00,801.00" fill="#8EBBD2" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="560.00,801.00 600.00,817.00 560.00,833.00 520.00,817.00" fill="#6FB5B6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="600.00,817.00 640.00,833.00 600.00,849.00 560.00,833.00" fill="#93C2C9" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="640.00,833.00 680.00,849.00 640.00,865.00 600.00,849.00" fill="#73BBAD" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="680.00,849.00 720.00,865.00 680.00,881.00 640.00,865.00" fill="#98C8C0" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,753.00 400.00,769.00 360.00,785.00 320.00,769.00" fill="#97B5D5" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,769.00 440.00,785.00 400.00,801.00 360.00,785.00" fill="#76ADBA" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,785.00 480.00,801.00 440.00,817.00 400.00,801.00" fill="#9AB9D0" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,801.00 520.00,817.00 480.00,833.00 440.00,817.00" fill="#79B2B6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="520.00,817.00 560.00,833.00 520.00,849.00 480.00,833.00" fill="#9DBECB" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="560.00,833.00 600.00,849.00 560.00,865.00 520.00,849.00" fill="#7CB6B1" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="600.00,849.00 640.00,865.00 600.00,881.00 560.00,865.00" fill="#9FC3C6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="640.00,865.00 680.00,881.00 640.00,897.00 600.00,881.00" fill="#7FBBAC" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,769.00 360.00,785.00 320.00,801.00 280.00,785.00" fill="#85AEB1" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,785.00 400.00,801.00 360.00,817.00 320.00,801.00" fill="#A8B9C9" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,801.00 440.00,817.00 400.00,833.00 360.00,817.00" fill="#86B1B1" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,817.00 480.00,833.00 440.00,849.00 400.00,833.00" fill="#A8BCC9" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,833.00 520.00,849.00 480.00,865.00 440.00,849.00" fill="#E7996A" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="520.00,849.00 560.00,865.00 520.00,881.00 480.00,865.00" fill="#E7996A" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="560.00,865.00 600.00,881.00 560.00,897.00 520.00,881.00" fill="#87B6B0" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="600.00,881.00 640.00,897.00 600.00,913.00 560.00,897.00" fill="#A9C2C8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="280.00,785.00 320.00,801.00 280.00,817.00 240.00,801.00" fill="#B8BBBE" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,801.00 360.00,817.00 320.00,833.00 280.00,817.00" fill="#95B2A8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,817.00 400.00,833.00 360.00,849.00 320.00,833.00" fill="#B6BCC2" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,833.00 440.00,849.00 400.00,865.00 360.00,849.00" fill="#93B3AC" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,849.00 480.00,865.00 440.00,881.00 400.00,865.00" fill="#E7996A" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,865.00 520.00,881.00 480.00,897.00 440.00,881.00" fill="#E7996A" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="520.00,881.00 560.00,897.00 520.00,913.00 480.00,897.00" fill="#B3BECA" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="560.00,897.00 600.00,913.00 560.00,929.00 520.00,913.00" fill="#90B4B4" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="240.00,801.00 280.00,817.00 240.00,833.00 200.00,817.00" fill="#A6B59A" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="280.00,817.00 320.00,833.00 280.00,849.00 240.00,833.00" fill="#C6BEB7" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,833.00 360.00,849.00 320.00,865.00 280.00,849.00" fill="#A2B4A3" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,849.00 400.00,865.00 360.00,881.00 320.00,865.00" fill="#C2BDBF" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,865.00 440.00,881.00 400.00,897.00 360.00,881.00" fill="#9FB2AC" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,881.00 480.00,897.00 440.00,913.00 400.00,897.00" fill="#BFBCC8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,897.00 520.00,913.00 480.00,929.00 440.00,913.00" fill="#9BB1B4" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="520.00,913.00 560.00,929.00 520.00,945.00 480.00,929.00" fill="#BBBBD0" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="200.00,817.00 240.00,833.00 200.00,849.00 160.00,833.00" fill="#D8C2A7" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="240.00,833.00 280.00,849.00 240.00,865.00 200.00,849.00" fill="#B3B695" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="280.00,849.00 320.00,865.00 280.00,881.00 240.00,865.00" fill="#D2BFB4" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,865.00 360.00,881.00 320.00,897.00 280.00,881.00" fill="#AEB3A2" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,881.00 400.00,897.00 360.00,913.00 320.00,897.00" fill="#CDBCC1" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,897.00 440.00,913.00 400.00,929.00 360.00,913.00" fill="#A8B0B0" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,913.00 480.00,929.00 440.00,945.00 400.00,929.00" fill="#C7B9CE" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,929.00 520.00,945.00 480.00,961.00 440.00,945.00" fill="#A2ADBD" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="160.00,833.00 200.00,849.00 160.00,865.00 120.00,849.00" fill="#C7BB83" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="200.00,849.00 240.00,865.00 200.00,881.00 160.00,865.00" fill="#E5C3A4" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="240.00,865.00 280.00,881.00 240.00,897.00 200.00,881.00" fill="#BFB695" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="280.00,881.00 320.00,897.00 280.00,913.00 240.00,897.00" fill="#DDBEB6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,897.00 360.00,913.00 320.00,929.00 280.00,913.00" fill="#B7B1A6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,913.00 400.00,929.00 360.00,945.00 320.00,929.00" fill="#D5B9C7" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,929.00 440.00,945.00 400.00,961.00 360.00,945.00" fill="#AFACB8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,945.00 480.00,961.00 440.00,977.00 400.00,961.00" fill="#CDB4D9" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="120.00,849.00 160.00,865.00 120.00,881.00 80.00,865.00" fill="#F9C890" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="160.00,865.00 200.00,881.00 160.00,897.00 120.00,881.00" fill="#D2BB83" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="200.00,881.00 240.00,897.00 200.00,913.00 160.00,897.00" fill="#EFC2A6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="240.00,897.00 280.00,913.00 240.00,929.00 200.00,913.00" fill="#C8B499" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="280.00,913.00 320.00,929.00 280.00,945.00 240.00,929.00" fill="#E5BBBC" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,929.00 360.00,945.00 320.00,961.00 280.00,945.00" fill="#BEADAF" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,945.00 400.00,961.00 360.00,977.00 320.00,961.00" fill="#DBB4D2" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,961.00 440.00,977.00 400.00,993.00 360.00,977.00" fill="#B3A7C5" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,737.00 720.00,865.00 400.00,993.00 80.00,865.00" fill="none" stroke="#8695A5" stroke-width="1.5"/>
+</g>
+<g id="mip-level-1">
+<polygon points="400.00,586.00 440.00,602.00 400.00,618.00 360.00,602.00" fill="#7FB0CD" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,602.00 480.00,618.00 440.00,634.00 400.00,618.00" fill="#83B5C6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,618.00 520.00,634.00 480.00,650.00 440.00,634.00" fill="#86BBBF" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="520.00,634.00 560.00,650.00 520.00,666.00 480.00,650.00" fill="#8AC0B8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,602.00 400.00,618.00 360.00,634.00 320.00,618.00" fill="#9EB5B8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,618.00 440.00,634.00 400.00,650.00 360.00,634.00" fill="#9EB7BA" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,634.00 480.00,650.00 440.00,666.00 400.00,650.00" fill="#E7996A" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="480.00,650.00 520.00,666.00 480.00,682.00 440.00,666.00" fill="#9DBABE" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,618.00 360.00,634.00 320.00,650.00 280.00,634.00" fill="#BEBBA3" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,634.00 400.00,650.00 360.00,666.00 320.00,650.00" fill="#B9B9AE" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,650.00 440.00,666.00 400.00,682.00 360.00,666.00" fill="#B4B7B9" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,666.00 480.00,682.00 440.00,698.00 400.00,682.00" fill="#B0B5C4" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="280.00,634.00 320.00,650.00 280.00,666.00 240.00,650.00" fill="#DEC08F" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="320.00,650.00 360.00,666.00 320.00,682.00 280.00,666.00" fill="#D4BAA2" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,666.00 400.00,682.00 360.00,698.00 320.00,682.00" fill="#CBB5B6" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,682.00 440.00,698.00 400.00,714.00 360.00,698.00" fill="#C2AFCA" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,586.00 560.00,650.00 400.00,714.00 240.00,650.00" fill="none" stroke="#3D72A6" stroke-width="2.5"/>
+<circle cx="400.0" cy="634.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="440.0" cy="650.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="360.0" cy="650.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="400.0" cy="666.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="416.0" cy="650.0" r="6" fill="#D64045" stroke="#FFFFFF" stroke-width="2"/>
+</g>
+<g id="mip-level-2">
+<polygon points="400.00,403.00 440.00,419.00 400.00,435.00 360.00,419.00" fill="#8FB4C1" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="440.00,419.00 480.00,435.00 440.00,451.00 400.00,435.00" fill="#A5B4A8" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="360.00,419.00 400.00,435.00 360.00,451.00 320.00,435.00" fill="#CABCA1" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,435.00 440.00,451.00 400.00,467.00 360.00,451.00" fill="#BCB4BF" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,403.00 480.00,435.00 400.00,467.00 320.00,435.00" fill="none" stroke="#8266AE" stroke-width="2.5"/>
+<circle cx="400.0" cy="419.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="440.0" cy="435.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="360.0" cy="435.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="400.0" cy="451.0" r="3.5" fill="#253649" stroke="#FFFFFF" stroke-width="1.3"/>
+<circle cx="408.0" cy="435.0" r="6" fill="#D64045" stroke="#FFFFFF" stroke-width="2"/>
+</g>
+<g id="mip-level-3">
+<polygon points="400.00,266.00 440.00,282.00 400.00,298.00 360.00,282.00" fill="#AFB6B2" stroke="#FFFFFF" stroke-width=".8" stroke-opacity=".65"/>
+<polygon points="400.00,266.00 440.00,282.00 400.00,298.00 360.00,282.00" fill="none" stroke="#8695A5" stroke-width="1.5"/>
+</g>
+<polygon points="400.00,512.80 528.00,564.00 400.00,615.20 272.00,564.00" fill="#D64045" fill-opacity=".035" stroke="#D64045" stroke-width="1.8" stroke-dasharray="7 6"/>
+<path d="M408 435 L416 650" fill="none" stroke="#D64045" stroke-width="1.7" stroke-dasharray="5 6"/>
+<circle cx="412.8" cy="564" r="5.5" fill="#D64045" stroke="#FFFFFF" stroke-width="2"/>
+<path d="M420 564 H596" fill="none" stroke="#D64045" stroke-width="1.5" stroke-dasharray="5 5"/>
+<text x="609" y="557" font-size="22" fill="#D64045" font-weight="600" text-anchor="start" >查询 LOD 1.4</text>
+<text x="609" y="585" font-size="17" fill="#68778A" font-weight="400" text-anchor="start" >位于第 1、2 层之间</text>
+<text x="192" y="279" font-size="21" fill="#68778A" font-weight="400" text-anchor="end" >第 3 层</text>
+<text x="192" y="307" font-size="17" fill="#68778A" font-weight="400" text-anchor="end" >1 × 1</text>
+<path d="M208 282 H345" fill="none" stroke="#B9C5D0" stroke-width="1.2" />
+<text x="192" y="431" font-size="23" fill="#8266AE" font-weight="600" text-anchor="end" >第 2 层</text>
+<text x="192" y="461" font-size="18" fill="#68778A" font-weight="400" text-anchor="end" >2 × 2</text>
+<path d="M208 435 H307" fill="none" stroke="#8266AE" stroke-width="1.5" />
+<text x="192" y="646" font-size="23" fill="#3D72A6" font-weight="600" text-anchor="end" >第 1 层</text>
+<text x="192" y="676" font-size="18" fill="#68778A" font-weight="400" text-anchor="end" >4 × 4</text>
+<path d="M208 650 H227" fill="none" stroke="#3D72A6" stroke-width="1.5" />
+<text x="400" y="1033" font-size="21" fill="#68778A" font-weight="400" text-anchor="middle" >第 0 层 · 8 × 8 · 原始纹理</text>
+<path d="M419 435 C600 435 690 400 881 400" fill="none" stroke="#8266AE" stroke-width="2" marker-end="url(#arrow-purple)"/>
+<path d="M427 650 C640 650 700 720 881 720" fill="none" stroke="#3D72A6" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<text x="705" y="388" font-size="17" fill="#8266AE" font-weight="400" text-anchor="middle" >邻域放大</text>
+<text x="705" y="687" font-size="17" fill="#3D72A6" font-weight="400" text-anchor="middle" >邻域放大</text>
+<text x="900" y="278" font-size="22" fill="#8266AE" font-weight="600" text-anchor="start" >第 2 层 · 双线性插值</text>
+<g id="bilinear-level-2">
+<rect x="900" y="300" width="100" height="100" fill="#8FB4C1" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="1000" y="300" width="100" height="100" fill="#A5B4A8" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="900" y="400" width="100" height="100" fill="#CABCA1" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="1000" y="400" width="100" height="100" fill="#BCB4BF" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="900" y="300" width="200" height="200" fill="none" stroke="#8266AE" stroke-width="2"/>
+<path d="M950 350 H1050 M950 450 H1050" fill="none" stroke="#8266AE" stroke-width="2.5" />
+<path d="M950 350 V450 M1050 350 V450" fill="none" stroke="#8266AE" stroke-width="1.3" stroke-dasharray="4 5"/>
+<circle cx="950" cy="350" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1050" cy="350" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="950" cy="450" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1050" cy="450" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<path d="M1010.0 350 V450" fill="none" stroke="#D64045" stroke-width="2.5" />
+<circle cx="1010.0" cy="350" r="5" fill="#9CB4B2" stroke="#253649" stroke-width="1.5"/>
+<circle cx="1010.0" cy="450" r="5" fill="#C2B7B3" stroke="#253649" stroke-width="1.5"/>
+<circle cx="1010.0" cy="390.0" r="7" fill="#D64045" stroke="#FFFFFF" stroke-width="2.5"/>
+<text x="1000" y="532" font-size="17" fill="#68778A" font-weight="400" text-anchor="middle" >四个纹素 → 一个采样颜色</text>
+<path d="M1020.0 390.0 C1080 390.0 1108 400 1144 400" fill="none" stroke="#8266AE" stroke-width="2" marker-end="url(#arrow-purple)"/>
+<rect x="1160" y="374" width="52" height="52" fill="#ABB5B2" stroke="#8266AE" stroke-width="2"/>
+<text x="1186" y="453" font-size="17" fill="#68778A" font-weight="400" text-anchor="middle" >采样颜色</text>
+</g>
+<text x="900" y="598" font-size="22" fill="#3D72A6" font-weight="600" text-anchor="start" >第 1 层 · 双线性插值</text>
+<g id="bilinear-level-1">
+<rect x="900" y="620" width="100" height="100" fill="#9EB7BA" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="1000" y="620" width="100" height="100" fill="#E7996A" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="900" y="720" width="100" height="100" fill="#B9B9AE" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="1000" y="720" width="100" height="100" fill="#B4B7B9" stroke="#FFFFFF" stroke-width="1.4"/>
+<rect x="900" y="620" width="200" height="200" fill="none" stroke="#3D72A6" stroke-width="2"/>
+<path d="M950 670 H1050 M950 770 H1050" fill="none" stroke="#3D72A6" stroke-width="2.5" />
+<path d="M950 670 V770 M1050 670 V770" fill="none" stroke="#3D72A6" stroke-width="1.3" stroke-dasharray="4 5"/>
+<circle cx="950" cy="670" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1050" cy="670" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="950" cy="770" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="1050" cy="770" r="5.2" fill="#253649" stroke="#FFFFFF" stroke-width="2"/>
+<path d="M1020.0 670 V770" fill="none" stroke="#D64045" stroke-width="2.5" />
+<circle cx="1020.0" cy="670" r="5" fill="#D1A282" stroke="#253649" stroke-width="1.5"/>
+<circle cx="1020.0" cy="770" r="5" fill="#B6B7B6" stroke="#253649" stroke-width="1.5"/>
+<circle cx="1020.0" cy="700.0" r="7" fill="#D64045" stroke="#FFFFFF" stroke-width="2.5"/>
+<text x="1000" y="852" font-size="17" fill="#68778A" font-weight="400" text-anchor="middle" >四个纹素 → 一个采样颜色</text>
+<path d="M1030.0 700.0 C1080 700.0 1108 720 1144 720" fill="none" stroke="#3D72A6" stroke-width="2" marker-end="url(#arrow-blue)"/>
+<rect x="1160" y="694" width="52" height="52" fill="#C9A892" stroke="#3D72A6" stroke-width="2"/>
+<text x="1186" y="773" font-size="17" fill="#68778A" font-weight="400" text-anchor="middle" >采样颜色</text>
+</g>
+<path d="M1227 400 C1320 400 1350 480 1407 559" fill="none" stroke="#8266AE" stroke-width="3" marker-end="url(#arrow-purple)"/>
+<path d="M1227 720 C1320 720 1350 650 1407 581" fill="none" stroke="#3D72A6" stroke-width="3" marker-end="url(#arrow-blue)"/>
+<text x="1312" y="416" font-size="30" fill="#8266AE" font-weight="600" text-anchor="middle" >40%</text>
+<text x="1312" y="750" font-size="30" fill="#3D72A6" font-weight="600" text-anchor="middle" >60%</text>
+<circle cx="1420" cy="570" r="12" fill="#BDAD9F" stroke="#253649" stroke-width="2"/>
+<text x="1420" y="532" font-size="19" fill="#68778A" font-weight="400" text-anchor="middle" >层间混合</text>
+<path d="M1438 570 H1492" fill="none" stroke="#253649" stroke-width="2.5" marker-end="url(#arrow-ink)"/>
+<rect x="1510" y="480" width="180" height="180" fill="#BDAD9F" stroke="#253649" stroke-width="2"/>
+<circle cx="1600" cy="570" r="6.5" fill="#D64045" stroke="#FFFFFF" stroke-width="2.5"/>
+<text x="1600" y="701" font-size="22" fill="#253649" font-weight="600" text-anchor="middle" >最终像素颜色</text>
+<text x="1470" y="848" font-size="20" fill="#68778A" font-weight="400" text-anchor="middle" >按 LOD 在两层之间的位置分配权重</text>
+<text x="1470" y="883" font-size="18" fill="#68778A" font-weight="400" text-anchor="middle" >查询位置连续变化，混合结果也平滑变化</text>
+<path d="M824 952 H1728" fill="none" stroke="#E4E9EF" stroke-width="1.5" />
+<circle cx="838" cy="987" r="5.5" fill="#D64045" stroke="none" stroke-width="0"/>
+<text x="855" y="994" font-size="18" fill="#68778A" font-weight="400" text-anchor="start" >红点：同一归一化纹理坐标在各层的采样位置</text>
+<path d="M826 1026 H850" fill="none" stroke="#D64045" stroke-width="1.8" stroke-dasharray="5 4"/>
+<text x="865" y="1033" font-size="18" fill="#68778A" font-weight="400" text-anchor="start" >红色虚线层：非整数 LOD 的查询位置</text>
+<text x="400" y="1075" font-size="18" fill="#68778A" font-weight="400" text-anchor="middle" >层级向上增大，纹理分辨率逐层减半</text>
+</svg>

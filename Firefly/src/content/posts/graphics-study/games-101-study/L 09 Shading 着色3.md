@@ -1,7 +1,7 @@
 ---
-title: Shading 着色2
+title: Shading 着色3
 published: 2026-10-13
-description: 介绍重心坐标
+description: 介绍重心坐标和纹理
 tags: [graphics,games101]
 image: ../../images/graphics-study/games-101-study/cat18.avif
 category: 计算机图形学学习
@@ -9,9 +9,7 @@ series: "Games101学习之路"
 seriesOrder: 7
 ---
 
-# Shading 着色3
-
-## Barycentric Coordinates 重心坐标
+# Barycentric Coordinates 重心坐标
 
 在一个二维三角形ABC内，某点$(x,y)$满足：
 $$
@@ -21,7 +19,7 @@ $$
 - 当$\alpha , \beta , \gamma \geq 0$时，则$(x,y)$在三角形内部
 - 三角形重心的重心坐标：$(1/3,1/3,1/3)$
 
-### 重心坐标插值
+## 重心坐标插值
 
 设$\triangle{ABC}$中$A,B,C$点各自有属性$V_1,V_2,V_3$，则三角形内某一点的属性：
 $$
@@ -37,7 +35,7 @@ $$
 实际上，我们一样可以在2维进行重心坐标插值，只需要对2维的重心坐标作一个修正，就可以还原为3维的重心坐标。<br>
 这就是**透视正确插值**
 
-### 透视正确插值
+## 透视正确插值
 设屏幕空间计算出的重心坐标为：
 $$
     (\lambda_A,\lambda_B,\lambda_C)
@@ -52,40 +50,47 @@ $$
 $$
 这就是修正后的重心坐标，对应的就是三维空间中真正的重心坐标
 
-### 推导透视正确修正
+# 纹理
 
-设三角形三个点在三维空间中的齐次坐标为：
+- 纹理上某个点的$(u,v)$即是将像素的颜色设为对应纹理坐标的颜色
+- texel 纹理上的像素
+
+## 纹理过小
+
+- 导致一个texel映射到多个pixel
+- 解决方案：双线性插值
+
+### 双线性插值
+![](../../images/graphics-study/games-101-study/bilinear-interpolation.svg)
+
+## 纹理过大
+
+- 本质：屏幕像素相对于纹理的采样频率太低
+  > 会导致“走样”问题
+解决方案：
+1. 抗锯齿（MSAA、DLSS）
+2. MipMap
+
+### MipMap
+
+- 做范围查询
+- 先预生成不同分辨率图，在像素映射纹素时查询。
+- 生成MipMap时会不断像素除以2来获得新的像素图，直到不能再分。MipMap会分级，原先的纹理即为**第0级**
+求MipMap Level D：
 $$
-    C'_i
+    L = max(\sqrt{(\frac{du}{dx})^2+(\frac{dv}{dx})^2},\sqrt{(\frac{du}{dy})^2+(\frac{dv}{dy})^2})
 $$
-三角形内某点在**三维空间**中的坐标为：
 $$
-    P'= \sum_i{\beta_i C'_i},\quad\sum{\beta_i}=1
+    D = \log_{2}L
 $$
-其中$\beta$为三维空间中的重心坐标<br>
-然后经过投影矩阵$M$后：
-$$
-    P = MP'= M\sum_i{\beta_i C'_i} = \sum_i{\beta_i MC'_i} = \sum_i{\beta_i C_i}
-$$
-其中$P$是该点在**裁剪空间**中的坐标，$C_i$是三角形顶点在**裁剪空间**中的坐标<br>
-取该点的$x$坐标为例，有：
-$$
-    X_P = \sum_i{\beta_iX_i},\quad w_P = \sum_i{\beta_iw_i}
-$$
-接下来做透视除法，$x$坐标为：
-$$
-    x = \frac{X_P}{w_P} = \frac{\sum_i{\beta_iX_i}}{\sum_i{\beta_iw_i}}
-$$
-整理上式，令$S = \sum_i{\beta_iw_i}$：
-$$
-    x = \frac{\sum_i{\beta_iX_i}}{S} = \sum_i{\frac{\beta_iw_i}{S}\frac{X_i}{w_i}} = \sum_i{\boxed{\frac{\beta_iw_i}{\sum_j{\beta_jw_j}}}\frac{X_i}{w_i}}
-$$
-由于$X_i/w_i$即为原先的三角形投影到屏幕后的**屏幕**$x$坐标，根据重心坐标的定义，有：
-$$
-    \lambda_i = \frac{\beta_iw_i}{\sum_j{\beta_jw_j}}
-$$
-根据重心坐标的性质，有$\sum_i{\beta_i}=1$，设$S = \sum_j{\beta_jw_j}$，经过一些数学计算：
-$$
-    \lambda_i = \frac{\beta_iw_i}{\sum_j{\beta_jw_j}} \Longrightarrow \frac{\lambda_i}{w_i} = \frac{\beta_i}{S} \Longrightarrow \sum_j{\frac{\lambda_j}{w_j}} = \frac{\sum_j{\beta_j}}{S} = \frac{1}{S} \Longrightarrow \beta_i = S\frac{\lambda_i}{w_i} = \frac{\lambda_i/w_i}{\sum_j{\lambda_j/w_j}}
-$$
-原命题得证
+举例：假设**1个像素**映射到**4个纹素**，这时候应该在$D=2$级的更粗糙的纹理图上找对应的像素（这个纹理图上的一个像素由**上一级**的相邻4个像素平均合并而成）
+
+### 三线性插值
+
+问题：当需要查询MipMap1.8层对应的纹素时，该怎么办？<br>
+解决：先在上下夹着的两层分别作双线性插值，再在层与层之间作一次线性插值
+![](../../images/graphics-study/games-101-study/mipmap-trilinear.svg)
+
+### 其他过滤方法
+- RipMap 各向异性过滤：水平和竖直都分别压缩
+- EWA Filtering

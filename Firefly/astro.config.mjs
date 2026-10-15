@@ -71,6 +71,10 @@ export default defineConfig({
 
 	base: "/",
 	trailingSlash: "always",
+	server: {
+		// 避开部分 Windows 环境中无法监听的默认端口 4321。
+		port: 3000,
+	},
 
 	// 字体配置 - 只加载实际使用的字体，跳过未引用的以加快构建
 	fonts: (() => {

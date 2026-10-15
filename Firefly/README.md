@@ -129,7 +129,7 @@
    ```bash
    pnpm dev
    ```
-   博客将在 `http://localhost:4321` 可用
+   博客将在 `http://localhost:3000` 可用
 
 ### 平台托管部署
 - **参考[官方指南](https://docs.astro.build/zh-cn/guides/deploy/)将博客部署至 Vercel, Netlify, Cloudflare Pages, EdgeOne Pages 等。**
@@ -254,7 +254,7 @@ location: China # 位置
 | Command                    | Action                                 |
 | :------------------------- | :------------------------------------- |
 | `pnpm install`             | 安装依赖                               |
-| `pnpm dev`                 | 在 `localhost:4321` 启动本地开发服务器 |
+| `pnpm dev`                 | 在 `localhost:3000` 启动本地开发服务器 |
 | `pnpm build`               | 构建网站至 `./dist/`                   |
 | `pnpm preview`             | 本地预览已构建的网站                   |
 | `pnpm check`               | 检查代码中的错误                       |

@@ -130,7 +130,7 @@
    ```bash
    pnpm dev
    ```
-   ブログは`http://localhost:4321`で利用可能になります
+   ブログは`http://localhost:3000`で利用可能になります
 
 ### プラットフォームホスティングデプロイ
 - **[公式ガイド](https://docs.astro.build/ja/guides/deploy/)を参照して、Vercel、Netlify、Cloudflare Pages、EdgeOne Pages などにブログをデプロイしてください。**
@@ -255,7 +255,7 @@ Astro がデフォルトで対応している[GitHub Flavored Markdown](https://
 | Command                    | Action                                          |
 | :------------------------- | :---------------------------------------------- |
 | `pnpm install`             | 依存関係をインストール                          |
-| `pnpm dev`                 | `localhost:4321`でローカル開発サーバーを起動    |
+| `pnpm dev`                 | `localhost:3000`でローカル開発サーバーを起動    |
 | `pnpm build`               | `./dist/`にサイトをビルド                       |
 | `pnpm preview`             | ビルドされたサイトをローカルでプレビュー        |
 | `pnpm check`               | コード内のエラーをチェック                      |

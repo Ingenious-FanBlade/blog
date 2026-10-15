@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="780" viewBox="0 0 1440 780" role="img" aria-labelledby="title desc">
+  <title id="title">双线性插值：从屏幕像素到纹理采样点</title>
+  <desc id="desc">左侧为由四个正方形纹素组成的纹理邻域，右侧为一个放大的屏幕像素。红色虚线箭头从屏幕像素中心指向纹理中的红色采样点 P。以四个纹素中心为基准，P 的局部位置为 s=0.6、t=0.4。先沿水平方向得到 A、B，再沿竖直方向插值得到 C(P)。四个纹素 C00、C10、C01、C11 的权重依次为 24%、36%、16%、24%。颜色为数值加权示意。参考：https://registry.khronos.org/OpenGL/specs/gl/glspec46.core.pdf 。</desc>
+  <defs>
+    <style>
+      text { font-family: "Segoe UI", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; fill: #253649; }
+      .secondary { fill: #667487; }
+      .red { fill: #D64045; }
+      .cell-label { font-size: 23px; font-weight: 600; }
+      .weight { font-size: 18px; fill: #344B60; }
+      .guide { fill: none; stroke: #344B60; stroke-width: 1.5; stroke-dasharray: 5 6; opacity: .65; }
+      .dimension { fill: none; stroke: #718095; stroke-width: 1.4; }
+    </style>
+    <marker id="mapping-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="11" markerHeight="11" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 1 1 L 11 6 L 1 11 Z" fill="#D64045"/>
+    </marker>
+    <marker id="interpolation-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 1 1 L 9 5 L 1 9 Z" fill="#D64045"/>
+    </marker>
+  </defs>
+
+  <rect width="1440" height="780" fill="#FFFFFF"/>
+
+  <!-- Heading -->
+  <text x="72" y="80" font-size="39" font-weight="650">双线性插值</text>
+  <text x="1368" y="77" text-anchor="end" font-size="14" letter-spacing="2.5" class="secondary">BILINEAR INTERPOLATION</text>
+  <text x="72" y="121" font-size="20" class="secondary">从屏幕像素中心映射到纹理，再由四个相邻纹素计算采样颜色。</text>
+  <path d="M72 151 H1368" stroke="#DFE5EC" stroke-width="1.5"/>
+
+  <text x="120" y="208" font-size="25" font-weight="600">纹理</text>
+  <text x="184" y="208" font-size="19" class="secondary">2 × 2 纹素邻域</text>
+  <text x="872" y="208" font-size="25" font-weight="600">屏幕像素</text>
+
+  <!-- Local interpolation coordinates, measured between texel centers -->
+  <g class="dimension">
+    <path d="M200 259 V273 M296 259 V273 M360 259 V273 M200 266 H360"/>
+    <path d="M90 362 H104 M90 426 H104 M97 362 V426"/>
+  </g>
+  <path d="M200 266 H296" stroke="#D64045" stroke-width="2.5"/>
+  <path d="M97 362 V426" stroke="#D64045" stroke-width="2.5"/>
+  <text x="248" y="250" text-anchor="middle" font-size="19" class="red">s = 0.6</text>
+  <text x="339" y="250" text-anchor="middle" font-size="17" class="secondary">1−s</text>
+  <text x="79" y="394" text-anchor="middle" font-size="19" class="red" transform="rotate(-90 79 394)">t = 0.4</text>
+
+  <!-- Four square texels: stored values are represented at their centers -->
+  <g id="texture">
+    <rect x="120" y="282" width="160" height="160" fill="#6CA9DD"/>
+    <rect x="280" y="282" width="160" height="160" fill="#84C7AF"/>
+    <rect x="120" y="442" width="160" height="160" fill="#F3C778"/>
+    <rect x="280" y="442" width="160" height="160" fill="#C6A8D9"/>
+    <path d="M280 282 V602 M120 442 H440" stroke="#FFFFFF" stroke-width="2" stroke-opacity=".8"/>
+    <rect x="120" y="282" width="320" height="320" fill="none" stroke="#344B60" stroke-width="2"/>
+
+    <text x="140" y="315" class="cell-label">C₀₀</text>
+    <text x="140" y="339" class="weight">24%</text>
+    <text x="420" y="315" text-anchor="end" class="cell-label">C₁₀</text>
+    <text x="420" y="339" text-anchor="end" class="weight">36%</text>
+    <text x="140" y="566" class="cell-label">C₀₁</text>
+    <text x="140" y="590" class="weight">16%</text>
+    <text x="420" y="566" text-anchor="end" class="cell-label">C₁₁</text>
+    <text x="420" y="590" text-anchor="end" class="weight">24%</text>
+
+    <path d="M200 362 V522 M360 362 V522" class="guide"/>
+    <path d="M200 362 H360 M200 522 H360" fill="none" stroke="#315C80" stroke-width="3"/>
+
+    <!-- First: two horizontal linear interpolations -->
+    <g fill="#253649" stroke="#FFFFFF" stroke-width="2.5">
+      <circle cx="200" cy="362" r="6.5"/>
+      <circle cx="360" cy="362" r="6.5"/>
+      <circle cx="200" cy="522" r="6.5"/>
+      <circle cx="360" cy="522" r="6.5"/>
+    </g>
+    <circle cx="296" cy="362" r="8" fill="#7ABBC1" stroke="#253649" stroke-width="2"/>
+    <circle cx="296" cy="522" r="8" fill="#D8B4B2" stroke="#253649" stroke-width="2"/>
+    <text x="296" y="342" text-anchor="middle" font-size="22" font-weight="600">A</text>
+    <text x="296" y="554" text-anchor="middle" font-size="22" font-weight="600">B</text>
+
+    <!-- Second: interpolate vertically between A and B -->
+    <path d="M296 374 V413" fill="none" stroke="#D64045" stroke-width="3" marker-end="url(#interpolation-arrow)"/>
+    <path d="M296 510 V439" fill="none" stroke="#D64045" stroke-width="3" marker-end="url(#interpolation-arrow)"/>
+    <circle cx="296" cy="426" r="9" fill="#D64045" stroke="#FFFFFF" stroke-width="3"/>
+    <path d="M304 435 L316 451" fill="none" stroke="#D64045" stroke-width="1.5"/>
+    <text x="322" y="474" font-size="22" font-weight="600" class="red">P(s,t)</text>
+  </g>
+
+  <!-- The screen pixel holds the sampled color, not the four source texels -->
+  <g id="screen-pixel">
+    <rect x="872" y="242" width="448" height="448" fill="#A0B8BB" stroke="#344B60" stroke-width="2"/>
+    <path d="M1075 466 H1117 M1096 445 V487" stroke="#48666E" stroke-width="1.5"/>
+    <circle cx="1096" cy="466" r="7" fill="#D64045" stroke="#FFFFFF" stroke-width="3"/>
+    <text x="1096" y="505" text-anchor="middle" font-size="18">像素中心</text>
+    <text x="1096" y="597" text-anchor="middle" font-size="31" font-weight="600">C(P)</text>
+    <text x="1096" y="632" text-anchor="middle" font-size="20">双线性插值得到的颜色</text>
+    <text x="1096" y="723" text-anchor="middle" font-size="18" class="secondary">单个屏幕像素（示意放大）</text>
+  </g>
+
+  <!-- Mapping runs from the screen pixel center to P in texture space -->
+  <path d="M1082 466 C815 466 650 426 310 426" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-opacity=".75"/>
+  <path d="M1082 466 C815 466 650 426 310 426" fill="none" stroke="#D64045" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#mapping-arrow)"/>
+  <text x="647" y="382" text-anchor="middle" font-size="22" font-weight="600" class="red">纹理坐标映射</text>
+  <text x="647" y="413" text-anchor="middle" font-size="18" class="secondary">像素中心 → P(s,t)</text>
+
+  <!-- Compact legend -->
+  <circle cx="127" cy="642" r="6" fill="#253649"/>
+  <text x="145" y="649" font-size="18" class="secondary">纹素中心</text>
+  <circle cx="267" cy="642" r="6" fill="#D64045"/>
+  <text x="285" y="649" font-size="18" class="secondary">映射后的采样点</text>
+  <text x="120" y="684" font-size="18" class="secondary">A、B：两行在同一 s 位置的插值结果</text>
+  <text x="120" y="715" font-size="18" class="secondary">s 向右、t 向下；均以纹素中心间距为单位</text>
+
+</svg>

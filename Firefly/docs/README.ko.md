@@ -129,7 +129,7 @@
    ```bash
    pnpm dev
    ```
-   블로그는 `http://localhost:4321`에서 이용할 수 있습니다.
+   블로그는 `http://localhost:3000`에서 이용할 수 있습니다.
 
 ### 호스팅 플랫폼에 배포
 - **[공식 가이드](https://docs.astro.build/en/guides/deploy/)를 참고하여 블로그를 Vercel, Netlify, Cloudflare Pages, EdgeOne Pages 등에 배포하세요.**
@@ -255,7 +255,7 @@ Astro가 기본으로 지원하는 [GitHub Flavored Markdown](https://github.git
 | Command                    | Action                                              |
 |:---------------------------|:----------------------------------------------------|
 | `pnpm install`             | 의존성 설치                                         |
-| `pnpm dev`                 | `localhost:4321`에서 로컬 개발 서버 시작            |
+| `pnpm dev`                 | `localhost:3000`에서 로컬 개발 서버 시작            |
 | `pnpm build`               | 사이트를 `./dist/`에 빌드                           |
 | `pnpm preview`             | 빌드된 사이트를 로컬에서 미리 보기                  |
 | `pnpm check`               | 코드 오류 검사                                      |
