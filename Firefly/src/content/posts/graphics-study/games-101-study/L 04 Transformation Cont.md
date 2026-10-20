@@ -9,11 +9,9 @@ series: "Games101学习之路"
 seriesOrder: 2
 ---
 
-# Transformation Cont. 视图变换
+# 三维齐次坐标下变换的矩阵
 
-## 三维齐次坐标下变换的矩阵
-
-### Scale
+## Scale
 
 $$
 S(s_x,s_y,s_z)=\begin{bmatrix}
@@ -21,7 +19,7 @@ S(s_x,s_y,s_z)=\begin{bmatrix}
 \end{bmatrix}
 $$
 
-### Translation
+## Translation
 
 $$
 T(t_x,t_y,t_z)=\begin{bmatrix}
@@ -29,7 +27,7 @@ T(t_x,t_y,t_z)=\begin{bmatrix}
 \end{bmatrix}
 $$
 
-### Rotation
+## Rotation
 
 $$
 R_x(\alpha) = \begin{bmatrix}
@@ -59,7 +57,7 @@ $$
   \end{bmatrix}
   $$
 
-## View / Camera Transformation 模型视图变换
+# View / Camera Transformation 模型视图变换
 
 将相机和模型一起移动，相机移动到世界坐标的原点
 
@@ -89,9 +87,9 @@ $$
 
 > 可以先求$R^{-1}_{view}$，再根据旋转矩阵为正交矩阵的性质求$R_{view}=(R^{-1}_{view})^T$
 
-## Projection Transformation 投影变换
+# Projection Transformation 投影变换
 
-### Orthographic projection 正交投影 
+## Orthographic projection 正交投影 
 - 丢掉Z方向元素
 - 归一化 
 
@@ -104,7 +102,7 @@ M_{ortho}=\begin{bmatrix}
 \end{bmatrix}
 $$
 
-### Perspective Projection 透视投影
+## Perspective Projection 透视投影
 
 将模型从空间坐标映射到摄像机近平面的坐标
 

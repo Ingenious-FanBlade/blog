@@ -9,9 +9,7 @@ series: "Games101学习之路"
 seriesOrder: 4
 ---
 
-# Rasterization 光栅化2
-
-## Sample 采样
+# Sample 采样
 
 - 时间上的采样
 - 空间上的采样
@@ -46,4 +44,4 @@ msaa：用4个点分划一个像素，通过计算点是否在三角形内确定
 fxaa：先拿到有锯齿的图=>再处理掉锯齿
 taa：复用上一帧的画面，msaa的样本分布到时间上
 super resolution
-## 信号 
+# 信号 

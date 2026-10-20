@@ -9,16 +9,14 @@ series: "Games101学习之路"
 seriesOrder: 5
 ---
 
-# Shading 着色1
-
-## Z-Buffer 深度缓冲
+# Z-Buffer 深度缓冲
 
 - 用来描述像素的前后关系
 - 每个像素存储对应的深度值
   > - frame buffer帧缓冲存储像素的颜色
   > - depth buffer深度缓冲存储像素的深度值
 
-### Z-Buffer 要求
+## Z-Buffer 要求
 
 1. $z\in[0,1]$
 2. z更小更近，更大更远
@@ -34,7 +32,7 @@ seriesOrder: 5
                 ...
 ```
 
-## Bling- Phong反射模型
+# Bling- Phong反射模型
 
 - 高光：镜面反射
 - 漫反射

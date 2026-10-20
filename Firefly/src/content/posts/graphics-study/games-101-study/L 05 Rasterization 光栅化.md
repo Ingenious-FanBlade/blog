@@ -9,15 +9,13 @@ series: "Games101学习之路"
 seriesOrder: 3
 ---
 
-# Rasterization 光栅化1
-
-## 像素
+# 像素
 
 - 一个像素从左下角开始到右上角
 - 范围：$[0,0]\quad to\quad [width-1,height-1]$
 - 像素$(x,y)$的中心点为$(x+0.5,y+0.5)$
 
-## 透视除法
+# 透视除法
 
 将裁剪空间的坐标值全部除以$w$：
 $$
@@ -30,7 +28,7 @@ $$
 $$
 这样才能拿出x，y，z项的三维坐标接着使用
 
-## 视口变换
+# 视口变换
 
 将空间从 $[-1,1]^2$ 变换为屏幕空间 $[0,width] \times [0,height]$
 
@@ -40,11 +38,11 @@ M_{viewport}=\begin{bmatrix}
 \end{bmatrix}
 $$
 
-## 三角形
+# 三角形
 
 - 可以通过向量叉积判断一个点是否在三角形外
 
-### 判断方法
+## 判断方法
 
 设三角形 $ABC$ 三条边向量分别为 $\overrightarrow{AB},\overrightarrow{BC},\overrightarrow{CA}$ ，设顶点$P$到三个顶点的向量为$\overrightarrow{AP},\overrightarrow{BP},\overrightarrow{CP}$
 
